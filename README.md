@@ -28,3 +28,7 @@ To set up the project locally, ensure you have the following software installed:
 ```bash
 git clone https://github.com/jallu-dev/canteen.git
 ```
+## Sample Outputs
+
+![Sample Output image](src/sample1.png)
+![Sample Output image](src/sample2.png)
