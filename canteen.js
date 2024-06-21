@@ -1,5 +1,4 @@
-const crowdData = {
-  
+const crowdData = {  
   mon: {
     "0700-0705": {
       applied: 3,
@@ -2463,3 +2462,123 @@ const comparisonData = {
     bs: 2,
   },
 };
+
+function getCurrentTime() {
+  const date = new Date();
+  // const date = new Date(2024, 6, 21, 8, 16, 0, 0);
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  return `${hours}${minutes}`;
+}
+
+function findCurrentTimeSlot(data) {
+  const currentTime = getCurrentTime();
+  for (let timeSlot in data) {
+    const [start, end] = timeSlot.split("-");
+    if (currentTime >= start && currentTime < end) {
+      return timeSlot;
+    }
+  }
+  return null; // If no matching time slot is found
+}
+
+function getDay() {
+  const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+  const date = new Date();
+  return days[date.getDay()];
+}
+
+let comparisonChart;
+
+const todo = () => {
+  //function to find percentages
+  const main = function (comparisonData, crowdData) {
+    let day = getDay();
+    let crowdtimeSlot = findCurrentTimeSlot(crowdData[day]);
+    let comparisonTimeSlot = findCurrentTimeSlot(comparisonData);
+
+    if (!crowdtimeSlot || !comparisonTimeSlot) {
+      const overlayUnder = (document.querySelector(
+        ".overlayUnder"
+      ).style.display = "block");
+    } else {
+      const overlayUnder = (document.querySelector(
+        ".overlayUnder"
+      ).style.display = "none");
+      let comparisonTotal =
+        comparisonData[comparisonTimeSlot].applied +
+        comparisonData[comparisonTimeSlot].ammachi +
+        comparisonData[comparisonTimeSlot].bs;
+
+      let comparedApplied =
+        (comparisonData[comparisonTimeSlot].applied / comparisonTotal) * 100;
+
+      let comparedAmmachi =
+        (comparisonData[comparisonTimeSlot].ammachi / comparisonTotal) * 100;
+
+      let comparedBs =
+        (comparisonData[comparisonTimeSlot].bs / comparisonTotal) * 100;
+
+      let outputData = {
+        comparedApplied: comparedApplied,
+        comparedAmmachi: comparedAmmachi,
+        comparedBs: comparedBs,
+        crowdApplied: crowdData[day][crowdtimeSlot].applied,
+        crowdAmmachi: crowdData[day][crowdtimeSlot].ammachi,
+        crowdBs: crowdData[day][crowdtimeSlot].bs,
+      };
+
+      return outputData;
+    }
+  };
+
+  let outputData = main(comparisonData, crowdData);
+  console.log(outputData);
+  const camparisonCanvas = document.querySelector(".camparisonCanvas");
+
+  const data = {
+    labels: ["Applied", "BS", "Ammachi"],
+    datasets: [
+      {
+        label: "My First Dataset",
+        data: [
+          outputData.comparedApplied,
+          outputData.comparedBs,
+          outputData.comparedAmmachi,
+        ],
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+        ],
+        hoverOffset: 4,
+      },
+    ],
+  };
+
+  const config = {
+    type: "doughnut",
+    data: data,
+  };
+
+  if (comparisonChart) comparisonChart.destroy();
+  comparisonChart = new Chart(camparisonCanvas, config);
+
+  const crowdBarApplied = (document.querySelector(
+    ".crowdBarApplied"
+  ).style.height = `${outputData.crowdApplied}%`);
+  const crowdBarBs = (document.querySelector(
+    ".crowdBarBs"
+  ).style.height = `${outputData.crowdBs}%`);
+  const crowdBarAmmachi = (document.querySelector(
+    ".crowdBarAmmachi"
+  ).style.height = `${outputData.crowdAmmachi}%`);
+};
+todo();
+setInterval(todo, 60000);
