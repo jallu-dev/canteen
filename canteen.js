@@ -2420,3 +2420,46 @@ const crowdData = {
     },
   },
 };
+
+const comparisonData = {
+  "0700-0800": {
+    applied: 10,
+    ammachi: 1,
+    bs: 10,
+  },
+  "0800-0900": {
+    applied: 29,
+    ammachi: 6,
+    bs: 32,
+  },
+  "0900-1000": {
+    applied: 4,
+    ammachi: 1,
+    bs: 2,
+  },
+  "1000-1100": {
+    applied: 3,
+    ammachi: 1,
+    bs: 3,
+  },
+  "1100-1200": {
+    applied: 1,
+    ammachi: 1,
+    bs: 2,
+  },
+  "1200-1300": {
+    applied: 37,
+    ammachi: 9,
+    bs: 41,
+  },
+  "1300-1200": {
+    applied: 10,
+    ammachi: 2,
+    bs: 6,
+  },
+  "1400-1500": {
+    applied: 2,
+    ammachi: 1,
+    bs: 2,
+  },
+};
