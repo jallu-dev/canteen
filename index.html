@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Canteen</title>
+  </head>
+  <body>
+    <div class="overlayUnder">
+      <div class="overlay">
+        <div class="messagebox">
+          <h1>Canteens Are Closed 🔒</h1>
+          <p style="font-size: 50px">😢</p>
+          <p>Please Come Between 7am to 3pm</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="comparisonContainer">
+        <h1>Crowd Comparison Between Canteens</h1>
+
+        <div class="comparisonDoughnet">
+          <canvas class="camparisonCanvas"></canvas>
+        </div>
+      </div>
+
+      <div class="crowdContainer">
+        <h1>Crowd Level Of Each Canteen</h1>
+        <div class="crowdBarBox">
+          <div class="crowdBar crowdBar_Applied">
+            <div class="crowdBarApplied"></div>
+          </div>
+          <div class="crowdBar crowdBar_Bs">
+            <div class="crowdBarBs"></div>
+          </div>
+          <div class="crowdBar crowdBar_Ammachi">
+            <div class="crowdBarAmmachi"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="canteen.js"></script>
+  </body>
+</html>
