@@ -2481,7 +2481,7 @@ function findCurrentTimeSlot(data) {
   const currentTime = getCurrentTime();
   for (let timeSlot in data) {
     const [start, end] = timeSlot.split("-");
-    if (currentTime >= start && currentTime < end) {
+    if (currentTime >= start && currentTime <= end) {
       return timeSlot;
     }
   }
