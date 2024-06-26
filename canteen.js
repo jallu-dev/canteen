@@ -2502,7 +2502,7 @@ const todo = () => {
     let day = getDay();
     let crowdtimeSlot = findCurrentTimeSlot(crowdData[day]);
     let comparisonTimeSlot = findCurrentTimeSlot(comparisonData);
-
+    console.log(crowdtimeSlot,comparisonTimeSlot)
     if (!crowdtimeSlot || !comparisonTimeSlot) {
       const overlayUnder = (document.querySelector(
         ".overlayUnder"
