@@ -19,6 +19,7 @@ h1 {
 
 .comparisonContainer {
   height: 60%;
+  padding:10;
   display: flex;
   justify-content: space-around;
   align-items: center;
